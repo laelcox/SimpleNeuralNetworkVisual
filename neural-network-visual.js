@@ -10,7 +10,6 @@ var neuronsPerLayer = [5,7,5,3], // from left to right, indicate the number of n
 	margin = { right: 75, left: 75, top: 25, bottom: 25 }, //set margins around the whole image
 	labelPadding = { lower: 25, lowerTextYPosition: 20, upper: 25, upperYPosition: 20 };
 
-var colorscheme = ["rgb(245, 243, 239)","rgb(249, 235, 242)","rgb(250, 221, 237)","rgb(240, 179, 214)","rgb(221, 114, 173)","rgb(192, 38, 126)","rgb(142, 1, 82)"];
 var grays = ["rgb(119,119,119)","rgb(193,193,193)"]
 
 // Set up frame ==============================================================================
@@ -113,7 +112,7 @@ var numberOfYPositionsNeeded = (numberNeuronsForVerticalSpacing * 2) - 1, // Why
 	yPositionIndexes_CenteredOnScale = [], // Stores the indexes of which yPositionsPlaceholder should map to a given neuron
 	// yPositionIndexes_CenteredOnScale: [[0,2,4,6,8],[1,3,5,7]] by layer, index value to get from yPositionPlaceholders
 	yPositionCoordinates = []; // list of y pixel coordinates for each placeholder
-	// yPositionCoordinates: //pixel coordinates based on y_scale
+	// yPositionCoordinates: pixel coordinates based on y_scale
 	
 // Determine actual yPositionIndexes, starting and moving out from center
 neuronsPerLayer.forEach((d,i) => {
@@ -224,7 +223,6 @@ labels = labels.enter().append("text")
 	.attr("class","layer-label")
 	.merge(labels)
 	.attr("text-anchor","middle")
-	//.style("font-size",getLabelFontSize)
 	.text(generateLowerLabelText);
 
 function generateLowerLabelText(d) {
@@ -294,7 +292,6 @@ function resize() {
 	// get actual pixel coordinates of y position placeholders (which were in terms of domain intervals)
 	yPositionCoordinates = [];
 	yPositionPlaceholders.forEach(d => yPositionCoordinates.push(y_Spacing(d)));
-	//console.log(yPositionCoordinates);
 
 	// Calculate neuron radius based on total vertical height available
 	let neuronRadius = d3.max([(mainContentHeight/numberNeuronsForVerticalSpacing)/2 - 3,2]);
@@ -341,9 +338,6 @@ function resize() {
 	.attr("y1", 0)
 	.attr("x2", (d) => { console.log(d); return x_Spacing(d[1])} )
 	.attr("y2", 0);
-
-	//if (!svg.empty()){svg.remove();};
-	//div.selectAll("*").remove();
 }
 resize();
 window.addEventListener("resize", resize);
@@ -357,7 +351,7 @@ window.addEventListener("resize", resize);
 
 function showConnections(d) {
 	// Style the neuron that is hovered over
-	d3.select("#" + d.neuron).style("fill",colorscheme[3]);
+	d3.select("#" + d.neuron).style("fill",grays[1]);
 
 	// Style connected neurons
 	neurons.filter(function(dd){ 
@@ -365,7 +359,7 @@ function showConnections(d) {
 				return this
 			} else { return null}
 		})
-		.style("fill",colorscheme[3]);
+		.style("fill",grays[1]);
 
 	// Style related links
 	links.filter(function(dd){ 
@@ -378,7 +372,7 @@ function showConnections(d) {
 			}
 		})
 		.datum(function(d) { d.zIndex = 2; return d; })
-		.style("stroke",colorscheme[4]);
+		.style("stroke",grays[0]);
 
 	// Ensure related links appear on top of non-related links
 	links.sort(function(a,b) {

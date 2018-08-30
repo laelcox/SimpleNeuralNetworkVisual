@@ -1,5 +1,3 @@
-# Interactive Neural Network Representation
-
 A basic visual that shows the up- and downstream influences on and by a single neuron in an artificial neural network. These connections are relevant in both feedforward and back propagation operations.
 
 Change the values in the variable array *neuronsPerLayer*, and the diagram will change to reflect the new neural network architecture. Hover over a neuron to see the neurons that influence it or are influenced by it.

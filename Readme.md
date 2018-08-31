@@ -1,4 +1,8 @@
-A basic visual that shows the up- and downstream influences on and by a single neuron in an artificial neural network. These connections are relevant in both feedforward and back propagation operations.
+# Simple Interactive Neural Network Visual
+
+A basic visual that shows the up- and downstream influences on and by a single neuron in an artificial neural network. These connections are relevant in both feedforward and back propagation operations. 
+
+Constructed using D3. See it in action as a [block](https://bl.ocks.org/laelcox/261849c07df68118853dd72e2a33a240).
 
 Change the values in the variable array *neuronsPerLayer*, and the diagram will change to reflect the new neural network architecture. Hover over a neuron to see the neurons that influence it or are influenced by it.
 
